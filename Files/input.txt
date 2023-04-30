@@ -1,0 +1,84 @@
+import 'package:com/home.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp( MyApp());
+}
+
+class MyApp extends StatelessWidget {
+   @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+ String name='name1';
+   String desc='mmmmm';
+   String imageName='asset/im1';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+
+        children: [
+          Container(
+              color: Colors.green,
+              width: 300.0,
+              child: MyCard(name, desc, imageName,(){}),),
+          Container(
+           // color: Colors.blue,
+            width: 250.0,
+            child: ListView(
+
+              children: [
+              MyCard("name1", "mmmmm", "asset/im1",(){setState(() {
+                 name="name1";this.desc="mmmm";this.imageName="asset/im1";
+              }); }),
+              MyCard("name1", "mmmmm", "asset/im1",(){setState(() {
+                 this.name="name2";this.desc="mmmm";this.imageName="asset/im1";
+              }); }),
+              MyCard("name3", "mmmmm", "asset/im1",(){setState(() {
+                 this.name="name3";this.desc="mmmm";this.imageName="asset/im1";
+              }); }),
+            ]),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MyCard extends StatelessWidget {
+   String name;
+   String desc;
+   String imageName;
+   Function() ontap;
+  MyCard(this.name, this. desc, this.imageName,this.ontap) ;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+          child: Container(
+          width: 40.0,
+          height: 50.0,
+          color:Colors.greenAccent,
+         margin: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Text(name),
+              Text(imageName),
+              Text(desc),
+            ],
+          )),
+    );
+  }
+}
