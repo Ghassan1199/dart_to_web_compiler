@@ -2,6 +2,14 @@ lexer grammar FlutterLexer;
 
 options { superClass=FlutterLexerBase; }
 
+ONCD : 'onChanged';
+BORDER : 'border';
+STYLE : 'style';
+HINTTXT : 'hintText';
+DECORATION : 'decoration';
+TXTFLD : 'TextFormField';
+TXTBTN : 'TextButton';
+INDEC : 'InputDecoration';
 NAV : 'Navigator';
 PUSH : 'push';
 BUILDER : 'builder';
@@ -16,10 +24,10 @@ CHILDREN_:'children';
 SCAFFOLD_:'Scaffold';
 ROW_:'Row';
 COLOR_:'color';
+PADDING_:'padding';
 COLORS_:'Colors';
 CONTAINER_:'Container';
 CHILD_:'child';
-PADDING_:'padding';
 BOOLEAN:(TRUE_ | FALSE_);
 
 FLOAT: [+-]?([0-9]*[.])?[0-9]+;

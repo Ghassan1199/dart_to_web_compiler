@@ -1,4 +1,4 @@
-// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/Compile/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
+// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/Compile - Copy/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
 package antlr;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -927,4 +927,104 @@ public interface FlutterParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNavigator(FlutterParser.NavigatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#textfield}.
+	 * @param ctx the parse tree
+	 */
+	void enterTextfield(FlutterParser.TextfieldContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#textfield}.
+	 * @param ctx the parse tree
+	 */
+	void exitTextfield(FlutterParser.TextfieldContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#textfieldproperties}.
+	 * @param ctx the parse tree
+	 */
+	void enterTextfieldproperties(FlutterParser.TextfieldpropertiesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#textfieldproperties}.
+	 * @param ctx the parse tree
+	 */
+	void exitTextfieldproperties(FlutterParser.TextfieldpropertiesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#onchanged}.
+	 * @param ctx the parse tree
+	 */
+	void enterOnchanged(FlutterParser.OnchangedContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#onchanged}.
+	 * @param ctx the parse tree
+	 */
+	void exitOnchanged(FlutterParser.OnchangedContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#decoration}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecoration(FlutterParser.DecorationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#decoration}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecoration(FlutterParser.DecorationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#border}.
+	 * @param ctx the parse tree
+	 */
+	void enterBorder(FlutterParser.BorderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#border}.
+	 * @param ctx the parse tree
+	 */
+	void exitBorder(FlutterParser.BorderContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#hint}.
+	 * @param ctx the parse tree
+	 */
+	void enterHint(FlutterParser.HintContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#hint}.
+	 * @param ctx the parse tree
+	 */
+	void exitHint(FlutterParser.HintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#inputDecoration}.
+	 * @param ctx the parse tree
+	 */
+	void enterInputDecoration(FlutterParser.InputDecorationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#inputDecoration}.
+	 * @param ctx the parse tree
+	 */
+	void exitInputDecoration(FlutterParser.InputDecorationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#inputDecorationProperties}.
+	 * @param ctx the parse tree
+	 */
+	void enterInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#inputDecorationProperties}.
+	 * @param ctx the parse tree
+	 */
+	void exitInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#button}.
+	 * @param ctx the parse tree
+	 */
+	void enterButton(FlutterParser.ButtonContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#button}.
+	 * @param ctx the parse tree
+	 */
+	void exitButton(FlutterParser.ButtonContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#buttonProperties}.
+	 * @param ctx the parse tree
+	 */
+	void enterButtonProperties(FlutterParser.ButtonPropertiesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#buttonProperties}.
+	 * @param ctx the parse tree
+	 */
+	void exitButtonProperties(FlutterParser.ButtonPropertiesContext ctx);
 }

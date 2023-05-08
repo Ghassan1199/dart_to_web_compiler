@@ -2,7 +2,7 @@ parser grammar FlutterParser;
 
 options { tokenVocab=FlutterLexer; }
 
-program :(function|class | import_f SC)+  EOF
+program :(textfield | function|class | import_f SC)+  EOF
 ;
 
 
@@ -117,7 +117,7 @@ this: THIS_ D (id | id EQ values) SC?;
 
 
 //flutter
-flutter_classes: run_app_call | text |  material_app_call | scaffold_call | row | column| container | list_view | gesture_detector | column;
+flutter_classes: button | inputDecoration | textfield | run_app_call | text |  material_app_call | scaffold_call | row | column| container | list_view | gesture_detector | column;
 flutter_functions: set_state;
 
 children: CHILDREN_ CO OB (class_call? (C class_call)*) C? CB;
@@ -129,7 +129,7 @@ width: WIDTH_ CO numbers;
 height: HEIGHT_ CO numbers;
 margin : MARGIN_ CO EDGEINSETS_ D function_call;
 padding : PADDING_ CO EDGEINSETS_ D function_call;
-on_tap : ONTAP_ CO ( id | navigator) ;
+on_tap : ONTAP_ CO OP CP OBC ( id | navigator) CBC C?;
 
 run_app_call: RUNAPP_ OP class_call CP SC; //runApp def
 
@@ -186,6 +186,29 @@ materialPageRouteProperities: builder C?
 navigator: NAV D PUSH OP id C materialPageRoute C? CP SC
 ;
 
+textfield: TXTFLD OP textfieldproperties+ CP C?
+;
+
+textfieldproperties: (decoration | onchanged) C?;
+
+onchanged: ONCD CO OP id CP OBC variable CBC C? ;
+
+decoration: DECORATION CO inputDecoration C?;
+
+border: BORDER CO class_call C?
+;
 
 
+hint: HINTTXT CO STRING C?;
 
+inputDecoration: INDEC OP inputDecorationProperties+ CP C?
+;
+
+inputDecorationProperties: (border | hint);
+
+
+button: TXTBTN OP buttonProperties+ CP C?
+;
+
+buttonProperties: (on_tap | child) // Note: onTap = onPressed
+;

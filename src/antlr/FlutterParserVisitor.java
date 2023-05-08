@@ -1,4 +1,4 @@
-// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/Compile/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
+// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/Compile - Copy/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
 package antlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -562,4 +562,64 @@ public interface FlutterParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNavigator(FlutterParser.NavigatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#textfield}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTextfield(FlutterParser.TextfieldContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#textfieldproperties}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTextfieldproperties(FlutterParser.TextfieldpropertiesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#onchanged}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOnchanged(FlutterParser.OnchangedContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#decoration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDecoration(FlutterParser.DecorationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#border}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBorder(FlutterParser.BorderContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#hint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHint(FlutterParser.HintContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#inputDecoration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputDecoration(FlutterParser.InputDecorationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#inputDecorationProperties}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#button}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitButton(FlutterParser.ButtonContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#buttonProperties}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitButtonProperties(FlutterParser.ButtonPropertiesContext ctx);
 }

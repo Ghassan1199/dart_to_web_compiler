@@ -1,0 +1,12 @@
+
+    main(){
+
+        ListView(
+               padding: EdgeInsets.symmetric(50),
+               children: [
+
+
+
+               ]
+             )             }
+

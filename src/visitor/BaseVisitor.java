@@ -15,6 +15,194 @@ import java.util.*;
 
 
 public class BaseVisitor extends FlutterParserBaseVisitor {
+
+
+    @Override
+    public OnChanged visitOnchanged(FlutterParser.OnchangedContext ctx) {
+        if (ctx != null) {
+
+            int lineNumber = ctx.start.getLine();
+
+            OnChanged onChanged = new OnChanged(lineNumber);
+
+
+            String variable = ctx.variable().getText();
+            String parameter = ctx.id().getText();
+            onChanged.setParameter(parameter);
+            onChanged.setChild(variable.substring(0,variable.length() - 1 ));
+
+         return onChanged;
+
+        }
+        return null;
+    }
+
+    public final SymbolTable symbolTable = new SymbolTable();
+
+    public final VariableTable variableTable = new VariableTable();
+
+    public static final Error errors = new Error();
+    public SemanticCheck semanticCheck;
+
+
+
+    @Override
+    public Program visitProgram(FlutterParser.ProgramContext ctx) {
+        Program program = new Program();
+        for (int i = 0; i < ctx.import_f().size(); i++) {
+            program.addChild(visitImport_f(ctx.import_f().get(i)));
+        }
+        for (int i = 0; i < ctx.function().size(); i++) {
+            program.addChild(visitFunction(ctx.function().get(i)));
+        }
+        for (int i = 0; i < ctx.class_().size(); i++) {
+            program.addChild(visitClass(ctx.class_().get(i)));
+        }
+
+        semanticCheck = new SemanticCheck(variableTable);
+
+         semanticCheck.check();
+
+        return program;
+    }
+
+
+    @Override
+    public Button visitButton(FlutterParser.ButtonContext ctx) {
+        if (ctx != null) {
+
+            int lineNumber = ctx.start.getLine();
+
+            Object onTap = visitButtonProperties(ctx.buttonProperties(0));
+            Object child = visitButtonProperties(ctx.buttonProperties(1));
+
+            this.symbolTable.setData("flutter class", "TextButton");
+
+            return new Button(lineNumber, onTap, child);
+        }
+    return null;
+    }
+
+    @Override
+    public Object visitButtonProperties(FlutterParser.ButtonPropertiesContext ctx) {
+        if (ctx != null) {
+
+          Object ot =  visitOn_tap(ctx.on_tap());
+         Object c =   visitChild(ctx.child());
+
+            if (ot != null) {
+                return ot;
+            }
+            else {
+                return c;
+            }
+
+        }
+        return null;
+    }
+
+    @Override
+    public InputDecoration visitInputDecoration(FlutterParser.InputDecorationContext ctx) {
+        if (ctx != null) {
+            this.symbolTable.setData("flutter class", "InputDecoration");
+
+            int lineNumber = ctx.start.getLine();
+            String hint = visitInputDecorationProperties(ctx.inputDecorationProperties(0));
+            String border = visitInputDecorationProperties(ctx.inputDecorationProperties(1));
+            if (hint != null) {
+                return new InputDecoration(lineNumber, border, hint.substring(1, hint.length() - 1));
+
+            }
+            else {
+                return new InputDecoration(lineNumber, border, hint);
+
+
+            }
+
+        }
+        return null;
+    }
+
+    @Override
+    public String visitInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx) {
+
+        if (ctx != null) {
+
+            Object border = visitBorder(ctx.border());
+            String hint = visitHint(ctx.hint());
+
+            List<String> l = new ArrayList<>();
+            if (hint != null) {
+                return hint;
+            }
+            else
+            {
+                return border.toString();
+
+            }
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public TextField visitTextfield(FlutterParser.TextfieldContext ctx) {
+        if (ctx != null) {
+            int lineNumber = ctx.start.getLine();
+
+            TextField textField = new TextField(lineNumber);
+
+            textField.setChild(visitTextfieldproperties(ctx.textfieldproperties(0)).toString());
+            textField.setChild(visitTextfieldproperties(ctx.textfieldproperties(1)));
+
+            this.symbolTable.setData("flutter class", "TextFormField");
+
+            return textField;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Object> visitTextfieldproperties(FlutterParser.TextfieldpropertiesContext ctx) {
+        if (ctx != null) {
+             Object o = visitDecoration(ctx.decoration());
+         OnChanged onChanged = visitOnchanged(ctx.onchanged());
+             List<Object> ob = new ArrayList<>();
+             ob.add(o);
+            ob.add(onChanged);
+             return ob;
+
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitDecoration(FlutterParser.DecorationContext ctx) {
+        if (ctx != null) {
+
+            return visitInputDecoration(ctx.inputDecoration());
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitBorder(FlutterParser.BorderContext ctx) {
+        if (ctx != null) {
+
+            return visitClass_call(ctx.class_call());
+        }
+        return null;
+    }
+
+    @Override
+    public String visitHint(FlutterParser.HintContext ctx) {
+        if (ctx != null) {
+            return ctx.getChild(2).getText();
+        }
+        return null;
+    }
+
     @Override
     public List<Object> visitMaterialPageRoute(FlutterParser.MaterialPageRouteContext ctx) {
         if (ctx != null) {
@@ -65,49 +253,13 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
                 nav.addData(s);
             }
 
-                  return nav;
+            this.symbolTable.setData("flutter class", "Navigator");
+
+            return nav;
         }
         return null;
     }
 
-    private final SymbolTable symbolTable = new SymbolTable();
-
-    private final Error errors = new Error();
-
-
-    @Override
-    public Program visitProgram(FlutterParser.ProgramContext ctx) {
-        Program program = new Program();
-        for (int i = 0; i < ctx.import_f().size(); i++) {
-            program.addChild(visitImport_f(ctx.import_f().get(i)));
-        }
-        for (int i = 0; i < ctx.function().size(); i++) {
-            program.addChild(visitFunction(ctx.function().get(i)));
-        }
-        for (int i = 0; i < ctx.class_().size(); i++) {
-            program.addChild(visitClass(ctx.class_().get(i)));
-        }
-
-        System.out.println();
-
-        if (this.errors.getErrors().isEmpty()) {
-            System.out.println("there are no errors");
-        } else {
-
-            System.out.println("-------Errors-------");
-            System.out.println();
-            this.errors.print();
-        }
-
-        System.out.println();
-        System.out.println("-------Symbol Table-------");
-        System.out.println();
-        this.symbolTable.print();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        return program;
-    }
 
     @Override
     public Function visitFunction(FlutterParser.FunctionContext ctx) {
@@ -305,14 +457,24 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             String name = ctx.getChild(1).getText();
             String value = ctx.getChild(3).getText();
 
-            Pair<String, String> pair = new Pair<>("variable", type + "\t" + name + "\t" + value);
-            if (this.symbolTable.getData().contains(pair)) {
-                errors.setError("variable " + name + " at line " + lineNumber + " already declared");
 
-            } else {
+            if (Objects.equals(value, ";")) {
+                this.variableTable.setData(type+","+name+",null");
+
+            }
+            else {
+                this.variableTable.setData(type+","+name+","+value);
+
+            }
+
+
+
+            Pair<String, String> pair = new Pair<>("variable", type + "\t" + name);
+
 
                 this.symbolTable.setData(pair);
-            }
+
+
 
 
 
@@ -332,14 +494,15 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             String name = ctx.getChild(1).getText();
 
 
-            Pair<String, String> pair = new Pair<>("variable declaration", type + "\t" + name);
-            if (this.symbolTable.getData().contains(pair)) {
-                errors.setError("variable declaration " + name + " at line " + lineNumber + " already declared");
+            this.variableTable.setData(type+","+name+",null");
 
-            } else {
+
+
+            Pair<String, String> pair = new Pair<>("variable", type + "\t" + name);
+
 
                 this.symbolTable.setData(pair);
-            }
+
 
 
             return new VariableDeclaration(lineNumber, type, name);
@@ -434,7 +597,6 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             List<Object> l = null;
             String id = visitId(ctx.id());
             Object vp = visitParameters(ctx.parameters());
-
             if (id != null || vp != null) {
                 l = new ArrayList<>();
                 l.add(id);
@@ -651,6 +813,9 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             Container c = visitContainer(ctx.container());
             Text t = visitText(ctx.text());
             ListView lv = visitList_view(ctx.list_view());
+            TextField tf = visitTextfield(ctx.textfield());
+            InputDecoration id = visitInputDecoration(ctx.inputDecoration());
+            Button b = visitButton(ctx.button());
             List<Object> o = new ArrayList<>();
             if (ma != null) {
                 o.add(ma);
@@ -675,6 +840,15 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             }
             if (lv != null) {
                 o.add(lv);
+            }
+            if (tf != null) {
+                o.add(tf);
+            }
+            if (id != null) {
+                o.add(id);
+            }
+            if (b != null) {
+                o.add(b);
             }
             return o;
         }
@@ -1022,24 +1196,26 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
 
             }
-            if (l.get(4) != null) {
-                if (l.get(4).toString().charAt(0) == '1') {
-                    color = l.get(4).toString().substring(1);
-                }
-                if (l.get(4).toString().charAt(0) == '2') {
-                    width = l.get(4).toString().substring(1);
-                }
-                if (l.get(4).toString().charAt(0) == '3') {
-                    height = l.get(4).toString().substring(1);
-                }
-                if (l.get(4).toString().charAt(0) == '4') {
-                    margin = l.get(4).toString().substring(1);
-                }
-                if (l.get(4).toString().charAt(0) == '5') {
-                    child = l.get(4).toString().substring(1);
+            if (l.size() == 5)
+            {
+                if (l.get(4) != null) {
+                    if (l.get(4).toString().charAt(0) == '1') {
+                        color = l.get(4).toString().substring(1);
+                    }
+                    if (l.get(4).toString().charAt(0) == '2') {
+                        width = l.get(4).toString().substring(1);
+                    }
+                    if (l.get(4).toString().charAt(0) == '3') {
+                        height = l.get(4).toString().substring(1);
+                    }
+                    if (l.get(4).toString().charAt(0) == '4') {
+                        margin = l.get(4).toString().substring(1);
+                    }
+                    if (l.get(4).toString().charAt(0) == '5') {
+                        child = l.get(4).toString().substring(1);
+                    }
                 }
             }
-
 
             this.symbolTable.setData("flutter class", "Container");
 

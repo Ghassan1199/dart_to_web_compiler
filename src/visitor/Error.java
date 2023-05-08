@@ -8,7 +8,8 @@ import java.util.List;
 public class Error {
 
 
-    private List<String> errors = new ArrayList<>();
+
+    private final List<String> errors = new ArrayList<>();
 
     public void setError(String value) {
         this.errors.add(value);
@@ -25,6 +26,7 @@ public class Error {
             System.out.println(error);
 
         }
+
 
 
     }

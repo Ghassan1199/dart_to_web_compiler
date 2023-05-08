@@ -6,7 +6,7 @@ import java.util.List;
 public class ListView extends Node {
     private final List<Object> children;
 
-   private String padding;
+   private final String padding;
     public ListView(int lineNumber, String padding) {
         nodeName = "ListView";
         this.lineNumber = lineNumber;

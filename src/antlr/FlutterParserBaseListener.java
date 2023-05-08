@@ -1,4 +1,4 @@
-// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/Compile/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
+// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/Compile - Copy/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
 package antlr;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -1116,6 +1116,126 @@ public class FlutterParserBaseListener implements FlutterParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNavigator(FlutterParser.NavigatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTextfield(FlutterParser.TextfieldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTextfield(FlutterParser.TextfieldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTextfieldproperties(FlutterParser.TextfieldpropertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTextfieldproperties(FlutterParser.TextfieldpropertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOnchanged(FlutterParser.OnchangedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOnchanged(FlutterParser.OnchangedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDecoration(FlutterParser.DecorationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDecoration(FlutterParser.DecorationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBorder(FlutterParser.BorderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBorder(FlutterParser.BorderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterHint(FlutterParser.HintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHint(FlutterParser.HintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInputDecoration(FlutterParser.InputDecorationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInputDecoration(FlutterParser.InputDecorationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterButton(FlutterParser.ButtonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitButton(FlutterParser.ButtonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterButtonProperties(FlutterParser.ButtonPropertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitButtonProperties(FlutterParser.ButtonPropertiesContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

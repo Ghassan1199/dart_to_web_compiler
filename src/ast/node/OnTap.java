@@ -1,14 +1,13 @@
 package ast.node;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class OnTap extends Node {
 
 
     Object child;
     public OnTap(int lineNumber) {
-        nodeName = "OnTap";
+        nodeName = "onChanged";
         this.lineNumber = lineNumber;
     }
 

@@ -1,18 +1,10 @@
 void main()
 {
 
-int c = 9;
-GestureDetector(
+x = 0;
+int g = 0.0;
 
-onTap:Navigator.push(
-        context,
-         MaterialPageRoute(
-                 builder: (context) => DetailScreen(name, email, password, ko, okok, ppp),
-                  )
-      );
-      )
-
-
+float g;
 }
 
 
