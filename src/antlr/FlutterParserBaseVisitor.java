@@ -2,6 +2,8 @@
 package antlr;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
+import java.io.FileNotFoundException;
+
 /**
  * This class provides an empty implementation of {@link FlutterParserVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
@@ -18,7 +20,7 @@ public class FlutterParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgram(FlutterParser.ProgramContext ctx) { return visitChildren(ctx); }
+	@Override public T visitProgram(FlutterParser.ProgramContext ctx) throws FileNotFoundException { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

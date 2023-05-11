@@ -22,4 +22,14 @@ public class InputDecoration extends Node{
         return nodeName + " at line" + lineNumber + ", border is "+ border + " and its hint Text is " + hintText;
 
     }
+    @Override
+    public String toHtml(List<String> content) {
+
+
+        return null;
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
 }

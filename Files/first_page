@@ -2,24 +2,7 @@ import 'package:flutter/material.dart';
 import 'pageTwo.dart';
 import 'page_three.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: first_page(),
-    );
-  }
-}
-
-
-
-
-class PageTwo extends StatelessWidget {
+class first_page extends StatelessWidget {
   string password = "init";
   string email = "init";
 
@@ -40,6 +23,7 @@ class PageTwo extends StatelessWidget {
           Container(
             height: 50,
           ),
+
           TextFormField(
              onChanged: (newEmail) {
                         email = newEmail;
@@ -67,7 +51,7 @@ class PageTwo extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => PageThree(
+                        builder: (context) => second_page(
                                email,
                               password
                             )));
@@ -77,29 +61,6 @@ class PageTwo extends StatelessWidget {
           ),
         ]
       ),
-    );
-  }
-}
-
-
-class PageThree extends StatelessWidget {
-   string password;
-   string email;
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(children: [
-        Container(
-          height: 80,
-        ),
-        Text(email),
-        Container(
-          height: 50,
-        ),
-        Text(password),
-      ]),
     );
   }
 }

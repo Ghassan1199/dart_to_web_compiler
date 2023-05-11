@@ -25,4 +25,14 @@ public class Variable extends Node {
         return nodeName + " at line " + lineNumber + " and its type is " + varType + " and its name is "
                 + varName + " and its value is " + value;
     }
+    @Override
+    public String toHtml(List<String> content) {
+
+
+        return null;
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
 }

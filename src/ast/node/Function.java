@@ -49,5 +49,14 @@ public class Function extends Node {
                 + " *** \n";
 
     }
+    @Override
+    public String toHtml(List<String> content) {
 
+
+        return null;
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
 }

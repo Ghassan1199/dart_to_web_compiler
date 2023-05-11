@@ -1,5 +1,7 @@
 package ast.node;
 
+import java.util.List;
+
 public class VariableDeclaration extends Node {
 
 
@@ -19,5 +21,16 @@ public class VariableDeclaration extends Node {
 
         return nodeName + " at line " + lineNumber + " and its type is " + varType + " and its name is "
                 + varName;
+    }
+
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
+    @Override
+    public String toHtml(List<String> content) {
+
+
+        return null;
     }
 }

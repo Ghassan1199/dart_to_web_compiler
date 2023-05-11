@@ -34,5 +34,24 @@ public class Column extends Node {
         return nodeName + " at line " + lineNumber + " and its children are \n" + childrenToString(children);
     }
 
+    @Override
+    public String toHtml(List<String> ids) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<script>\n");
+        sb.append("const urlParams = new URLSearchParams(window.location.search);\n");
 
+        for (String id : ids) {
+            sb.append("const ").append(id).append(" = urlParams.get(\'").append(id).append("\');\n");
+            sb.append("document.getElementById(\'").append(id).append("\').textContent = ").append(id).append(";\n");
+        }
+        sb.append("\n</script>");
+
+        return sb.toString();
+
+
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
 }

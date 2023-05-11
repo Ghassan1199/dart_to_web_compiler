@@ -5,6 +5,8 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
+
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -238,7 +240,13 @@ public class FlutterParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlutterParserVisitor ) return ((FlutterParserVisitor<? extends T>)visitor).visitProgram(this);
+			if ( visitor instanceof FlutterParserVisitor ) {
+				try {
+					return ((FlutterParserVisitor<? extends T>)visitor).visitProgram(this);
+				} catch (FileNotFoundException e) {
+					throw new RuntimeException(e);
+				}
+			}
 			else return visitor.visitChildren(this);
 		}
 	}

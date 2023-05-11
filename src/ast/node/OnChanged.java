@@ -33,4 +33,14 @@ public class OnChanged extends Node {
     public String toString() {
         return nodeName + " at liner " + lineNumber + ", and its parameter is "+getParameter()+ " and its child is " + child;
     }
+    @Override
+    public String toHtml(List<String> content) {
+
+
+        return null;
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
 }

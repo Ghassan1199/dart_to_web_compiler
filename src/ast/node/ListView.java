@@ -15,10 +15,19 @@ public class ListView extends Node {
 
     }
 
+    public List<Object> getChildren() {
+        return children;
+    }
+
     public void addChild(Object child) {
         children.add(child);
     }
+    @Override
+    public String toHtml(List<String> content) {
 
+
+        return null;
+    }
     StringBuilder childrenToString(List<Object> children) {
         StringBuilder rc = new StringBuilder();
         for (Object child : children) {
@@ -35,4 +44,8 @@ public class ListView extends Node {
 
     }
 
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
 }

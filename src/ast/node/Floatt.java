@@ -1,5 +1,7 @@
 package ast.node;
 
+import java.util.List;
+
 public class Floatt extends Node {
 
     private final float value;
@@ -14,5 +16,15 @@ public class Floatt extends Node {
     @Override
     public String toString() {
         return value + " ";
+    }
+    @Override
+    public String toHtml(List<String> content) {
+
+
+        return null;
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
     }
 }

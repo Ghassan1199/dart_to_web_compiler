@@ -32,4 +32,14 @@ public class Row extends Node {
     public String toString() {
         return nodeName + " at line " + lineNumber + " and its children are \n" + childrenToString(children);
     }
+    @Override
+    public String toHtml(List<String> content) {
+
+
+        return null;
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
+    }
 }

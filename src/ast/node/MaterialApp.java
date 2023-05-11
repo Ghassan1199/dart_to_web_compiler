@@ -14,10 +14,20 @@ public class MaterialApp extends Node {
         this.child = child;
     }
 
+    @Override
+    public String toHtml(List<String> content) {
 
+
+        return null;
+    }
 
     @Override
     public String toString() {
         return nodeName + " at line " + lineNumber + " and its child is " + child;
+    }
+
+    @Override
+    public String toHtml(String content) {
+        return null;
     }
 }

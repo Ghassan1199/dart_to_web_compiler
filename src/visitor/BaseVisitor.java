@@ -11,10 +11,26 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 
 public class BaseVisitor extends FlutterParserBaseVisitor {
+
+
+
+
+    public final SymbolTable symbolTable = new SymbolTable();
+
+    public final VariableTable variableTable = new VariableTable();
+
+
+    public static final Error errors = new Error();
+
+    public final static List<Node> nodes = new ArrayList<>();
+    public SemanticCheck semanticCheck;
+
+    public CodeGeneration codeGeneration;
 
 
     @Override
@@ -31,23 +47,14 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             onChanged.setParameter(parameter);
             onChanged.setChild(variable.substring(0,variable.length() - 1 ));
 
-         return onChanged;
+            return onChanged;
 
         }
         return null;
     }
 
-    public final SymbolTable symbolTable = new SymbolTable();
-
-    public final VariableTable variableTable = new VariableTable();
-
-    public static final Error errors = new Error();
-    public SemanticCheck semanticCheck;
-
-
-
     @Override
-    public Program visitProgram(FlutterParser.ProgramContext ctx) {
+    public Program visitProgram(FlutterParser.ProgramContext ctx) throws FileNotFoundException {
         Program program = new Program();
         for (int i = 0; i < ctx.import_f().size(); i++) {
             program.addChild(visitImport_f(ctx.import_f().get(i)));
@@ -59,9 +66,15 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             program.addChild(visitClass(ctx.class_().get(i)));
         }
 
-        semanticCheck = new SemanticCheck(variableTable);
+
+        this.semanticCheck = new SemanticCheck(variableTable);
 
          semanticCheck.check();
+
+         codeGeneration = new CodeGeneration(nodes);
+
+
+        codeGeneration.generate();
 
         return program;
     }
@@ -78,7 +91,10 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
             this.symbolTable.setData("flutter class", "TextButton");
 
-            return new Button(lineNumber, onTap, child);
+
+            Button button = new Button(lineNumber, onTap, child);
+            nodes.add(button);
+            return button;
         }
     return null;
     }
@@ -158,6 +174,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
             this.symbolTable.setData("flutter class", "TextFormField");
 
+            nodes.add(textField);
             return textField;
         }
         return null;
@@ -254,6 +271,8 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             }
 
             this.symbolTable.setData("flutter class", "Navigator");
+
+            nodes.add(nav);
 
             return nav;
         }
@@ -545,6 +564,8 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             Class cs = new Class(lineNumber, extendsTo, className);
             cs.addChild(visitClass_body(ctx.class_body()));
 
+            this.nodes.add(cs);
+
             return cs;
         }
         return null;
@@ -592,7 +613,6 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
     @Override
     public List<Object> visitClass_call(FlutterParser.Class_callContext ctx) {
         if (ctx != null) {
-
 
             List<Object> l = null;
             String id = visitId(ctx.id());
@@ -865,11 +885,11 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
         if (ctx != null) {
 
             List<Object> l = new ArrayList<>();
-            for (int i = 0; i < ctx.getChildCount() - 2; i++) {
-                if (!(Objects.equals(ctx.getChild(i).getText(), ","))) {
-                    l.add(visitClass_call(ctx.class_call(i)));
-                }
-
+            for (int i = 0; i < ctx.getChildCount() - 1; i++) {
+//                if (!(Objects.equals(ctx.getChild(i).getText(), ","))) {
+//                    l.add(visitClass_call(ctx.class_call(i)));
+//                }
+                l.add(visitClass_call(ctx.class_call(i)));
             }
 
             return l;
@@ -1012,7 +1032,11 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
             this.symbolTable.setData("flutter class", "Scaffold");
 
-            return new Scaffold(lineNumber, child);
+            Scaffold scaffold = new Scaffold(lineNumber, child);
+
+                    this.nodes.add(scaffold);
+
+            return scaffold ;
         }
         return null;
     }
@@ -1084,6 +1108,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
 
             this.symbolTable.setData("flutter class", "Column");
+            nodes.add(column);
             return column;
 
         }
@@ -1117,7 +1142,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             String width = null;
             String height = null;
             String margin = null;
-            Object child = null;
+            String child = null;
             if (l.get(0) != null) {
 
                 if (l.get(0).toString().charAt(0) == '1') {
@@ -1218,8 +1243,11 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             }
 
             this.symbolTable.setData("flutter class", "Container");
+            Container container = new Container(lineNumber, child, width, height, margin, color);
 
-            return new Container(lineNumber, child, width, height, margin, color);
+            nodes.add(container);
+
+            return container ;
         }
         return null;
     }
@@ -1275,6 +1303,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
             this.symbolTable.setData("flutter class", "List View");
 
+System.out.println(listView.getChildren().size());
 
             return listView;
 
@@ -1332,8 +1361,10 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
             this.symbolTable.setData("flutter class", "Text");
 
+            Text text = new Text(lineNumber, child);
+            nodes.add(text);
 
-            return new Text(lineNumber, child);
+            return text;
         }
         return null;
     }

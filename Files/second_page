@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'pageTwo.dart';
+import 'page_three.dart';
+
+class second_page extends StatelessWidget {
+   string password;
+   string email;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(children: [
+        Container(
+          height: 80,
+        ),
+        Text(email),
+        Container(
+          height: 50,
+        ),
+        Text(password),
+      ]),
+    );
+  }
+}

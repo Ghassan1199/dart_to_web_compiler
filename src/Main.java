@@ -13,7 +13,7 @@ import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String source = "Files/input4";
+        String source = "Files/"+visitor.CodeGeneration.file;
         CharStream cs = fromFileName(source);
         FlutterLexer lexer = new FlutterLexer(cs);
         CommonTokenStream token = new CommonTokenStream(lexer);

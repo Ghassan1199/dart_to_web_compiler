@@ -1,6 +1,7 @@
 package ast.node;
 
 
+import java.util.List;
 
 public class Return extends Node {
 
@@ -15,5 +16,15 @@ public class Return extends Node {
     @Override
     public String toString() {
         return " *** " + nodeName + " at line " + lineNumber + " and its child is " + child + " *** \n";
+    }
+    @Override
+    public String toHtml(List<String> content) {
+
+
+        return null;
+    }
+    @Override
+    public String toHtml(String content) {
+        return null;
     }
 }

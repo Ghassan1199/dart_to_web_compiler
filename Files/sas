@@ -1,12 +1,59 @@
+import 'package:flutter/material.dart';
+import 'pageTwo.dart';
+import 'page_three.dart';
 
-    main(){
+class PageTwo extends StatelessWidget {
+  string password = "init";
+  string email = "init";
 
-        ListView(
-               padding: EdgeInsets.symmetric(50),
-               children: [
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     body: ListView(
+     children: [
+           Container(
+                height: 80,
+              ),
+              Container(
 
+                  margin: EdgeInsets.symmetric(130),
+                  child: Text(Login)
+                  ),
+              Container(
+                height: 50,
+              ),
 
+              Container(
+                           height: 50,
+                         ),
 
-               ]
-             )             }
+              Container(
+                height: 50,
+              ),
+                 TextFormField(
+                           onChanged: (newEmail) {
+                                      email = newEmail;
+                                    },
 
+                          decoration: InputDecoration(hintText: "enter your email"),
+                        ),
+              Container(
+                color: Colors.blueGrey,
+                width: 40,
+                child: TextButton(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PageThree(
+                                   email,
+                                  password
+                                )));
+                  },
+                  child: Text(Done)
+                )),
+                ]
+              )
+    );
+  }
+}

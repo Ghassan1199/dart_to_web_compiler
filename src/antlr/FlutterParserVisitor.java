@@ -2,6 +2,8 @@
 package antlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
+import java.io.FileNotFoundException;
+
 /**
  * This interface defines a complete generic visitor for a parse tree produced
  * by {@link FlutterParser}.
@@ -15,7 +17,7 @@ public interface FlutterParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgram(FlutterParser.ProgramContext ctx);
+	T visitProgram(FlutterParser.ProgramContext ctx) throws FileNotFoundException;
 	/**
 	 * Visit a parse tree produced by {@link FlutterParser#function}.
 	 * @param ctx the parse tree

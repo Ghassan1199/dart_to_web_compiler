@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+import 'pageTwo.dart';
+import 'page_three.dart';
+
+class first_page extends StatelessWidget {
+  string password = "init";
+  string email = "init";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+          Container(
+            color: Colors.blueGrey,
+            width: 40,
+            child: TextButton(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => second_page(
+                               email,
+                              password
+                            )));
+              },
+              child: Text(Done)
+            ),
+          ),
+
+      ),
+    );
+  }
+}

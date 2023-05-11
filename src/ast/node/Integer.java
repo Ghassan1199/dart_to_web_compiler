@@ -1,5 +1,7 @@
 package ast.node;
 
+import java.util.List;
+
 public class Integer extends Node {
 
     private final int value;
@@ -10,9 +12,19 @@ public class Integer extends Node {
 
         this.value = value;
     }
+    @Override
+    public String toHtml(List<String> content) {
 
+
+        return null;
+    }
     @Override
     public String toString() {
         return value + " ";
+    }
+
+    @Override
+    public String toHtml(String content) {
+        return null;
     }
 }
