@@ -2,6 +2,7 @@ package ast.node;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Class extends Node {
@@ -27,8 +28,10 @@ public class Class extends Node {
         StringBuilder rc = new StringBuilder();
         for (Object child : children) {
 
-            rc.append(child).append("\n\n");
-        }
+            if (child != null) {
+                rc.append(child).append("\n\n");
+
+            }        }
         return rc;
     }
 
@@ -40,8 +43,12 @@ public class Class extends Node {
     }
 @Override
     public String toHtml(String body)
-    {
-        StringBuilder sb = new StringBuilder();
+    {        StringBuilder sb = new StringBuilder();
+
+        if(Objects.equals(this.extendsTo, "StatefulWidget"))
+        {
+            return sb.toString();
+        }
 
         sb.append("<!DOCTYPE html>\n");
         sb.append("<html lang=\"en\">\n");

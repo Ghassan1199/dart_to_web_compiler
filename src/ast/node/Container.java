@@ -97,22 +97,6 @@ public class Container extends Node {
 
         }
 
-//        if (button != null) {
-//            Navigator navigator = null;
-//            for (Node node : nodes) {
-//                if (node instanceof Navigator) {
-//
-//                    navigator = (Navigator) node;
-//                    break;
-//
-//                }
-//            }
-//            if (navigator != null) {
-//
-//                sb.append(navigator.toHtml(""));
-//
-//            }
-//        }
 
         return sb.toString();
     }

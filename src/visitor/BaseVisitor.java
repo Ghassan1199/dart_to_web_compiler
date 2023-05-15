@@ -353,6 +353,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             String or = visitOverride(ctx.override());
             VariableDeclaration vd = visitDecl(ctx.decl());
             Object cc = visitClass_call(ctx.class_call());
+            Object fc = visitFlutter_classes(ctx.flutter_classes());
 
             if (rp != null) {
                 l.add(rp);
@@ -377,6 +378,9 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             }
             if (cc != null) {
                 l.add(cc);
+            }
+            if (fc != null) {
+                l.add(fc);
             }
 
             return l;
@@ -614,7 +618,9 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
     public List<Object> visitClass_call(FlutterParser.Class_callContext ctx) {
         if (ctx != null) {
 
+            Object ss = visitSet_state(ctx.set_state());
             List<Object> l = null;
+            List<Object> o = null;
             String id = visitId(ctx.id());
             Object vp = visitParameters(ctx.parameters());
             if (id != null || vp != null) {
@@ -624,7 +630,14 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             }
             if (l != null) {
                 return l;
-            } else {
+            }
+            if (ss != null) {
+                o = new ArrayList<>();
+                o.add(ss);
+                return o;
+            }
+            else
+            {
 
                 return visitFlutter_classes(ctx.flutter_classes());
             }
@@ -884,6 +897,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
     public List<Object> visitChildren(FlutterParser.ChildrenContext ctx) {
         if (ctx != null) {
 
+
             List<Object> l = new ArrayList<>();
             for (int i = 0; i < ctx.getChildCount() - 1; i++) {
 //                if (!(Objects.equals(ctx.getChild(i).getText(), ","))) {
@@ -972,6 +986,8 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             int lineNumber = ctx.start.getLine();
             OnTap ontap = new OnTap(lineNumber);
             Object o = visitNavigator(ctx.navigator());
+
+            Object p = visitSet_state(ctx.set_state());
 
             if (o != null) {
                 ontap.setChild(o);
@@ -1303,7 +1319,6 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
             this.symbolTable.setData("flutter class", "List View");
 
-System.out.println(listView.getChildren().size());
 
             return listView;
 
@@ -1313,7 +1328,19 @@ System.out.println(listView.getChildren().size());
 
 
     @Override
-    public Object visitSet_state(FlutterParser.Set_stateContext ctx) {
+    public SetState visitSet_state(FlutterParser.Set_stateContext ctx) {
+        if (ctx != null) {
+            int lineNumber = ctx.start.getLine();
+            SetState setState = new SetState(lineNumber);
+            List<Object> o = new ArrayList<>();
+            for (int i = 0; i < ctx.getChildCount(); i++) {
+                setState.addChild(visitStructure(ctx.structure(i)));
+            }
+            this.symbolTable.setData("flutter Function", "setState");
+
+
+            return setState;
+        }
         return null;
     }
 

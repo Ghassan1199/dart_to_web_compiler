@@ -36,8 +36,10 @@ public class Function extends Node {
         StringBuilder rc = new StringBuilder();
         for (Object child : children) {
 
-            rc.append(child).append("\n\n");
-        }
+            if (child != null) {
+                rc.append(child).append("\n\n");
+
+            }        }
         return rc;
     }
 

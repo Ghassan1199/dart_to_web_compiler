@@ -24,8 +24,10 @@ public class Column extends Node {
         StringBuilder rc = new StringBuilder();
         for (Object child : children) {
 
-            rc.append(child).append("\n");
-        }
+            if (child != null) {
+                rc.append(child).append("\n");
+
+            }        }
         return rc;
     }
 

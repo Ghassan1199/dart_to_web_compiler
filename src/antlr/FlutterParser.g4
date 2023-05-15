@@ -12,7 +12,7 @@ function:function_header function_body
 function_header: function_access UNDERSCORE? id OP (DATA_TYPE QM? id)? (C (DATA_TYPE QM? id))* CP;
 structure:( material_app_call | run_app_call |class_call | variable | decl| init| function | class | list | override|
 variable_call| list_assignement| for_loop | for_each | while | do_while | if | try_catch
-|function_call SC| list_value_call | enum | class_instance | flutter_functions | this ) | return | one_return;
+|function_call SC| list_value_call | enum | class_instance | flutter_functions | flutter_classes | this ) | return | one_return;
 function_body: one_return | OBC structure* CBC;
 function_call: UNDERSCORE? id OP ( class_call* | argument* | variable_call* | expr* | exp*) CP;
 //function_parameters:(DATA_TYPE QM? id)? (C (DATA_TYPE QM? id))* ;
@@ -45,7 +45,7 @@ class_body:OBC (structure*) CBC;
 class_type:ABSTRACT_? CLASS_;
 extends_class: ((EXTENDS_ | IMPLEMENTS_) id (LT id GT)?) ;
 class_instance :  NEW_? id OP argument* CP;
-class_call : ((CONST_? id OP parameters  CP) | flutter_classes) SC?;
+class_call : ((CONST_? id OP parameters  CP) | flutter_classes | set_state) SC?;
 list: list_decl | LIST id (LT DATA_TYPE GT)? EQ OB (list_values) CB SC;
 list_decl: LATE? LIST id SC;
 new_list :  NEW_? LIST OP CP;
@@ -124,12 +124,12 @@ children: CHILDREN_ CO OB (class_call? (C class_call)*) C? CB;
 child:CHILD_ CO class_call ;
 color:COLOR_ CO COLORS_ D id ;
 home: HOME_ CO class_call;
-body: BODY_ CO class_call;
+body: BODY_ CO (class_call | set_state);
 width: WIDTH_ CO numbers;
 height: HEIGHT_ CO numbers;
 margin : MARGIN_ CO EDGEINSETS_ D function_call;
 padding : PADDING_ CO EDGEINSETS_ D function_call;
-on_tap : ONTAP_ CO OP CP OBC ( id | navigator) CBC C?;
+on_tap : ONTAP_ CO OP CP OBC ( id | navigator | set_state) CBC C?;
 
 run_app_call: RUNAPP_ OP class_call CP SC; //runApp def
 
@@ -164,8 +164,8 @@ container_properities: child C?
 
 list_view: LISTVIEW_ OP  padding? C?  children? CP C?
 ;
-set_state: SETSTATE_ OP OP CP OBC
- structure* CBC CP SC;
+set_state: SETSTATE_ OP CP OBC
+ structure* CBC SC C?;
 
 gesture_detector: GESTUREDETECTOR_ OP gesture_detector_properities* CP
  ;

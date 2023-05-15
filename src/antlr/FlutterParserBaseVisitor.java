@@ -1,4 +1,4 @@
-// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/Compile - Copy/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
+// Generated from C:/Users/faleh/Desktop/univ/compiler project 1/Compiler Project/dart_to_web_compiler - Copy/src/antlr\FlutterParser.g4 by ANTLR 4.12.0
 package antlr;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

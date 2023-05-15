@@ -49,11 +49,13 @@ public class TextField extends Node {
         id = children.get(0).toString().split("is")[2].split("=")[0];
 
         sb.append("<input id=\"").append(id).append("_input\"");
-        if (Objects.equals(id, "password")) {
+        if (Objects.equals(id, " password")) {
+
             sb.append(" type=\"password\" placeholder=\"enter your ").append(id).append("\">");
 
         }
         else {
+
             sb.append(" type=\"text\" placeholder=\"enter your ").append(id).append("\">");
 
         }

@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'pageTwo.dart';
 import 'page_three.dart';
 
-class second_page extends StatelessWidget {
+class second_page extends StatefulWidget {
+
+  @override
+  State second_page createState() => _second_pageState();
+}
+
+
+class _second_pageState extends StatelessWidget {
    string password;
    string email;
 

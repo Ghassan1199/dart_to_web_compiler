@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'pageTwo.dart';
 import 'page_three.dart';
 
-class first_page extends StatelessWidget {
+class first_page extends StatefulWidget {
+
+  @override
+  State first_page createState() => _first_pageState();
+}
+
+class _first_pageState extends StatelessWidget {
   string password = "init";
   string email = "init";
 
@@ -24,22 +30,27 @@ class first_page extends StatelessWidget {
             height: 50,
           ),
 
-          TextFormField(
+setState(){
+TextFormField(
              onChanged: (newEmail) {
                         email = newEmail;
-                      },
+                      }
 
-            decoration: InputDecoration(hintText: "enter your email"),
-          ),
+            decoration: InputDecoration(hintText: "enter your email")
+          )
+
+};,
+
           Container(
             height: 50,
           ),
-          TextFormField(
- onChanged: (newPassword) {
+        setState(){  TextFormField(
+             onChanged: (newPassword) {
                         password = newPassword;
                       },
             decoration: InputDecoration(hintText: 'enter your password'),
-          ),
+          )};
+          ,
           Container(
             height: 50,
           ),
