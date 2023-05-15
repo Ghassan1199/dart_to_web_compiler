@@ -2,6 +2,8 @@ lexer grammar FlutterLexer;
 
 options { superClass=FlutterLexerBase; }
 
+FAB : 'floatingActionButton';
+FAB_ : 'FloatingActionButton';
 ONCD : 'onChanged';
 BORDER : 'border';
 STYLE : 'style';
@@ -170,7 +172,7 @@ fragment IDENTIFIER_NO_DOLLAR : IDENTIFIER_START_NO_DOLLAR IDENTIFIER_PART_NO_DO
 fragment IDENTIFIER_START_NO_DOLLAR : LETTER | '_' ;
 fragment IDENTIFIER_PART_NO_DOLLAR : IDENTIFIER_START_NO_DOLLAR | DIGIT ;
 fragment IDENTIFIER_START : IDENTIFIER_START_NO_DOLLAR | '$' ;
-fragment IDENTIFIER_PART : IDENTIFIER_START | DIGIT ;
+fragment IDENTIFIER_PART : IDENTIFIER_START | DIGIT | '+';
 fragment LETTER : 'a' .. 'z' | 'A' .. 'Z' ;
 fragment DIGIT : '0' .. '9' ;
 fragment SEQUENCES : (LOWERCASE | UPPERCASE);

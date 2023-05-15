@@ -1008,6 +1008,16 @@ public interface FlutterParserListener extends ParseTreeListener {
 	 */
 	void exitInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link FlutterParser#floatingactionbutton}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatingactionbutton(FlutterParser.FloatingactionbuttonContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#floatingactionbutton}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatingactionbutton(FlutterParser.FloatingactionbuttonContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FlutterParser#button}.
 	 * @param ctx the parse tree
 	 */
@@ -1027,4 +1037,14 @@ public interface FlutterParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitButtonProperties(FlutterParser.ButtonPropertiesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FlutterParser#floatProperties}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatProperties(FlutterParser.FloatPropertiesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FlutterParser#floatProperties}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatProperties(FlutterParser.FloatPropertiesContext ctx);
 }

@@ -93,7 +93,7 @@ public class SemanticCheck {
                         }
                     }
                     case "string" -> {
-                        boolean s = strings[2].matches("\"[a-zA-Z0-9]+\"");
+                        boolean s = strings[2].matches("\"[ a-zA-Z0-9]+\"");
                         if (!s) {
                             errors.setError("variable " + strings[1] + " of type " + strings[0] + " does not match value of " + strings[2]);
                         }

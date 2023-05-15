@@ -1,6 +1,7 @@
 package visitor;
 
 import ast.node.*;
+import ast.node.Class;
 
 
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ public class CodeGeneration {
 
     int navId;
     int colId;
+    int lisId;
 
     boolean isSecond;
     List<Integer> txtIndexes;
@@ -25,7 +27,7 @@ public class CodeGeneration {
     List<String> txtIds;
     VariableTable variableTable;
 
-    public static String file = "second_page";
+    public static String file = "third_page";
 
 
 
@@ -47,8 +49,10 @@ public class CodeGeneration {
     public  void generate() throws FileNotFoundException {
 
 
+
         writer = new PrintWriter("C:/Users/faleh/Desktop/New folder (4)/" + file + ".html");
         try {
+
 
             String html = "";
             String body = "";
@@ -58,10 +62,25 @@ public class CodeGeneration {
 
             int size = nodes.size();
 
-            for (int i = 0; i < size - 2; i++) {
 
+            for (int i = 0; i < size - 1; i++) {
 
-                    if ((nodes.get(i) instanceof Navigator)) {
+                if ( size - 3 == i) {
+                    continue;
+                }
+                if (nodes.get(i) instanceof ListView) {
+
+                    lisId = i;
+                    continue;
+
+                }
+                else if (nodes.get(i) instanceof Function) {
+
+                    content.append(nodes.get(i).toHtml("")).append("\n");
+
+                }
+
+               else if ((nodes.get(i) instanceof Navigator)) {
                         this.navId = i;
 
                     } else if ((nodes.get(i) instanceof Column)) {
@@ -93,32 +112,33 @@ public class CodeGeneration {
 
                     }
 
-
                     if (nodes.get(i) instanceof TextField) {
                         nodes.get(i).toHtml("");
                         this.txtFldIds.add(((TextField) nodes.get(i)).getId());
                     }
+
                 }
 
+            content.append(nodes.get(lisId).toHtml("")).append("\n");
 
 
-
-
-            if (nodes.get(size - 2) instanceof Scaffold) {
+            System.out.println(nodes.get(size - 3) instanceof Scaffold);
+            System.out.println(nodes.get(size - 1) instanceof Class);
+            System.out.println(nodes.get(size - 2) instanceof Function);
+            if (nodes.get(size - 3) instanceof Scaffold) {
 
                 if (navId != -1) {
-                    body = nodes.get(size - 2).toHtml(content + "\n" + nodes.get(this.navId).toHtml(txtFldIds));
+                    body = nodes.get(size - 3).toHtml(content + "\n" + nodes.get(this.navId).toHtml(txtFldIds));
 
                 }
                 else if (colId != -1)
                 {
-                    body = nodes.get(size - 2).toHtml(content + "\n" + nodes.get(this.colId).toHtml(txtIds));
+
+                    body = nodes.get(size - 3).toHtml(content + "\n" + nodes.get(this.colId).toHtml(txtIds));
 
                 }
                 else {
-                    body = nodes.get(size - 2).toHtml(content.toString());
-
-
+                    body = nodes.get(size - 3).toHtml(content.toString());
 
                 }
 

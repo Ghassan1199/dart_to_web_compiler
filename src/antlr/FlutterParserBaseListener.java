@@ -1217,6 +1217,18 @@ public class FlutterParserBaseListener implements FlutterParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFloatingactionbutton(FlutterParser.FloatingactionbuttonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFloatingactionbutton(FlutterParser.FloatingactionbuttonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterButton(FlutterParser.ButtonContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1236,6 +1248,18 @@ public class FlutterParserBaseListener implements FlutterParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitButtonProperties(FlutterParser.ButtonPropertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFloatProperties(FlutterParser.FloatPropertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFloatProperties(FlutterParser.FloatPropertiesContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

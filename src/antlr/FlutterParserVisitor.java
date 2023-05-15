@@ -613,6 +613,12 @@ public interface FlutterParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInputDecorationProperties(FlutterParser.InputDecorationPropertiesContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FlutterParser#floatingactionbutton}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloatingactionbutton(FlutterParser.FloatingactionbuttonContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FlutterParser#button}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -624,4 +630,10 @@ public interface FlutterParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitButtonProperties(FlutterParser.ButtonPropertiesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FlutterParser#floatProperties}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloatProperties(FlutterParser.FloatPropertiesContext ctx);
 }

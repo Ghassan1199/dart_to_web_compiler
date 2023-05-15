@@ -60,6 +60,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             program.addChild(visitImport_f(ctx.import_f().get(i)));
         }
         for (int i = 0; i < ctx.function().size(); i++) {
+
             program.addChild(visitFunction(ctx.function().get(i)));
         }
         for (int i = 0; i < ctx.class_().size(); i++) {
@@ -313,6 +314,9 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
                 function.addChild(g);
             }
 
+            nodes.add(function);
+
+
 
             return function;
 
@@ -354,6 +358,8 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             VariableDeclaration vd = visitDecl(ctx.decl());
             Object cc = visitClass_call(ctx.class_call());
             Object fc = visitFlutter_classes(ctx.flutter_classes());
+            Object vc = visitVariable_call(ctx.variable_call());
+            //Object id = visitId(ctx.id());
 
             if (rp != null) {
                 l.add(rp);
@@ -382,6 +388,9 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             if (fc != null) {
                 l.add(fc);
             }
+            if (vc != null) {
+                l.add(vc);
+            }
 
             return l;
         }
@@ -407,6 +416,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
     public Object visitFunction_call(FlutterParser.Function_callContext ctx) {
 
         if (ctx != null) {
+
             return ctx.getChild(2).getText();
         }
 
@@ -619,8 +629,9 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
         if (ctx != null) {
 
             Object ss = visitSet_state(ctx.set_state());
+            Object fc = visitFunction_call(ctx.function_call());
             List<Object> l = null;
-            List<Object> o = null;
+            List<Object> o;
             String id = visitId(ctx.id());
             Object vp = visitParameters(ctx.parameters());
             if (id != null || vp != null) {
@@ -634,6 +645,11 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             if (ss != null) {
                 o = new ArrayList<>();
                 o.add(ss);
+                return o;
+            }
+            if (fc != null) {
+                o = new ArrayList<>();
+                o.add(fc);
                 return o;
             }
             else
@@ -741,7 +757,6 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
 
     @Override
     public Object visitFor_var_decl(FlutterParser.For_var_declContext ctx) {
-        System.out.println(ctx.getText());
         return null;
     }
 
@@ -836,6 +851,46 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
     }
 
     @Override
+    public FloatingActionButton visitFloatingactionbutton(FlutterParser.FloatingactionbuttonContext ctx) {
+
+        if (ctx != null) {
+
+
+
+            int lineNumber = ctx.start.getLine();
+
+            Object onTap = visitFloatProperties(ctx.floatProperties(0));
+            Object child = visitFloatProperties(ctx.floatProperties(1));
+
+            this.symbolTable.setData("flutter class", "Floating Action Button");
+
+
+            FloatingActionButton fab = new FloatingActionButton(lineNumber, onTap, child);
+            nodes.add(fab);
+            return fab;
+        }
+    return  null;
+    }
+
+    @Override
+    public Object visitFloatProperties(FlutterParser.FloatPropertiesContext ctx) {
+        if (ctx != null) {
+
+            Object ot =  visitOn_tap(ctx.on_tap());
+            Object c =   visitChild(ctx.child());
+
+            if (ot != null) {
+                return ot;
+            }
+            else {
+                return c;
+            }
+
+        }
+        return null;
+    }
+
+    @Override
     public List<Object> visitFlutter_classes(FlutterParser.Flutter_classesContext ctx) {
         if (ctx != null) {
             MaterialApp ma = visitMaterial_app_call(ctx.material_app_call());
@@ -849,6 +904,8 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             TextField tf = visitTextfield(ctx.textfield());
             InputDecoration id = visitInputDecoration(ctx.inputDecoration());
             Button b = visitButton(ctx.button());
+           // FloatingActionButton fab = visitFloatingactionbutton(ctx.floatingactionbutton());
+
             List<Object> o = new ArrayList<>();
             if (ma != null) {
                 o.add(ma);
@@ -883,6 +940,9 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             if (b != null) {
                 o.add(b);
             }
+//            if (fab != null) {
+//                o.add(fab);
+//            }
             return o;
         }
         return null;
@@ -938,6 +998,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
     @Override
     public Object visitBody(FlutterParser.BodyContext ctx) {
         if (ctx != null) {
+
 
             return visitClass_call(ctx.class_call());
 
@@ -1045,12 +1106,14 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
         if (ctx != null) {
             int lineNumber = ctx.start.getLine();
             Object child = visitScaffold_call_properities(ctx.scaffold_call_properities(0));
+            FloatingActionButton  child2 = visitFloatingactionbutton(ctx.floatingactionbutton(0));
+
 
             this.symbolTable.setData("flutter class", "Scaffold");
 
-            Scaffold scaffold = new Scaffold(lineNumber, child);
+            Scaffold scaffold = new Scaffold(lineNumber, child, child2);
 
-                    this.nodes.add(scaffold);
+                    nodes.add(scaffold);
 
             return scaffold ;
         }
@@ -1062,6 +1125,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
     public Object visitScaffold_call_properities(FlutterParser.Scaffold_call_properitiesContext ctx) {
 
         if (ctx != null) {
+
             return visitBody(ctx.body());
         }
         return null;
@@ -1320,6 +1384,7 @@ public class BaseVisitor extends FlutterParserBaseVisitor {
             this.symbolTable.setData("flutter class", "List View");
 
 
+            nodes.add(listView);
             return listView;
 
         }

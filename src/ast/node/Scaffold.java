@@ -5,11 +5,13 @@ import java.util.List;
 
 public class Scaffold extends Node {
     private final Object child;
+    private final Object child1;
 
-    public Scaffold(int lineNumber, Object child) {
+    public Scaffold(int lineNumber, Object child , Object child1) {
         nodeName = "Scaffold";
         this.lineNumber = lineNumber;
         this.child = child;
+        this.child1 = child1;
     }
 
     @Override

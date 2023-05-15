@@ -30,7 +30,6 @@ class _first_pageState extends StatelessWidget {
             height: 50,
           ),
 
-setState(){
 TextFormField(
              onChanged: (newEmail) {
                         email = newEmail;
@@ -39,17 +38,17 @@ TextFormField(
             decoration: InputDecoration(hintText: "enter your email")
           )
 
-};,
+,
 
           Container(
             height: 50,
           ),
-        setState(){  TextFormField(
+          TextFormField(
              onChanged: (newPassword) {
                         password = newPassword;
                       },
             decoration: InputDecoration(hintText: 'enter your password'),
-          )};
+          )
           ,
           Container(
             height: 50,

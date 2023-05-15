@@ -81,10 +81,17 @@ public class Container extends Node {
 
 
             } else if (this.child.contains("Text")) {
+
+
                 String value = child.substring(34,child.length() - 1);
+                if (value.equals(" $_counter")) {
+                    return "";
+                }
                 sb.append(">\n<p>");
                 sb.append(value);
                 sb.append("</p>\n");
+
+
 
             }
 

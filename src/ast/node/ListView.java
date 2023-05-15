@@ -2,6 +2,9 @@ package ast.node;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static visitor.CodeGeneration.file;
 
 public class ListView extends Node {
     private final List<Object> children;
@@ -48,6 +51,25 @@ public class ListView extends Node {
 
     @Override
     public String toHtml(String content) {
-        return null;
+
+        if ((Objects.equals(file, "third_page")))
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.append("<script>\n");
+         sb.append("   var counter = 0;\n" +
+        "    var button = document.querySelector('div:last-of-type');\n" +
+        "    var counterDisplay = document.querySelector('div:first-of-type span');\n" +
+        "    \n" +
+        "    button.addEventListener('click', function() {\n" +
+        "      counterDisplay.textContent = ++counter;\n" +
+        "    });");
+            sb.append("\n</script>");
+            return sb.toString();
+        }
+
+        return "";
+
+
+
     }
 }

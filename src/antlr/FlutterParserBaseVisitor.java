@@ -720,6 +720,13 @@ public class FlutterParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitFloatingactionbutton(FlutterParser.FloatingactionbuttonContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitButton(FlutterParser.ButtonContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -728,4 +735,11 @@ public class FlutterParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitButtonProperties(FlutterParser.ButtonPropertiesContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFloatProperties(FlutterParser.FloatPropertiesContext ctx) { return visitChildren(ctx); }
 }

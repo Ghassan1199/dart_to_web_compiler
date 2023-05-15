@@ -4,12 +4,13 @@ import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Function extends Node {
 
     private final String funType;
-
+static int n = 0;
     private final String funName;
     private final List<Pair<String, String>> parameters;
     private final List<Object> children;
@@ -21,6 +22,7 @@ public class Function extends Node {
         this.funName = funName;
         parameters = new ArrayList<>();
         children = new ArrayList<>();
+
     }
 
     public void addChild(Object child) {
@@ -59,6 +61,18 @@ public class Function extends Node {
     }
     @Override
     public String toHtml(String content) {
-        return null;
+
+
+
+    StringBuilder sb = new StringBuilder();
+
+
+        if ((!Objects.equals(funName, "build")) && (n == 0)) {
+            n++;
+            sb.append("<div style=\"position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 36px; font-weight: bold; text-align: center;\">\n" +
+                    "You have pushed the button this many times: <span style=\"display: inline-block; margin-left: 5px;\">0</span>");
+        }
+
+        return sb.toString();
     }
 }

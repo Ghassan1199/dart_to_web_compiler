@@ -12,7 +12,7 @@ function:function_header function_body
 function_header: function_access UNDERSCORE? id OP (DATA_TYPE QM? id)? (C (DATA_TYPE QM? id))* CP;
 structure:( material_app_call | run_app_call |class_call | variable | decl| init| function | class | list | override|
 variable_call| list_assignement| for_loop | for_each | while | do_while | if | try_catch
-|function_call SC| list_value_call | enum | class_instance | flutter_functions | flutter_classes | this ) | return | one_return;
+|function_call SC| list_value_call | enum | class_instance | flutter_functions | flutter_classes | this | id ) | return | one_return;
 function_body: one_return | OBC structure* CBC;
 function_call: UNDERSCORE? id OP ( class_call* | argument* | variable_call* | expr* | exp*) CP;
 //function_parameters:(DATA_TYPE QM? id)? (C (DATA_TYPE QM? id))* ;
@@ -45,7 +45,7 @@ class_body:OBC (structure*) CBC;
 class_type:ABSTRACT_? CLASS_;
 extends_class: ((EXTENDS_ | IMPLEMENTS_) id (LT id GT)?) ;
 class_instance :  NEW_? id OP argument* CP;
-class_call : ((CONST_? id OP parameters  CP) | flutter_classes | set_state) SC?;
+class_call : ((CONST_? id OP parameters  CP) | flutter_classes | set_state | function_call) SC?;
 list: list_decl | LIST id (LT DATA_TYPE GT)? EQ OB (list_values) CB SC;
 list_decl: LATE? LIST id SC;
 new_list :  NEW_? LIST OP CP;
@@ -117,7 +117,7 @@ this: THIS_ D (id | id EQ values) SC?;
 
 
 //flutter
-flutter_classes: button | inputDecoration | textfield | run_app_call | text |  material_app_call | scaffold_call | row | column| container | list_view | gesture_detector | column;
+flutter_classes: floatingactionbutton | button | inputDecoration | textfield | run_app_call | text |  material_app_call | scaffold_call | row | column| container | list_view | gesture_detector | column;
 flutter_functions: set_state;
 
 children: CHILDREN_ CO OB (class_call? (C class_call)*) C? CB;
@@ -137,9 +137,9 @@ material_app_call: MATERIALAPP_ OP material_app_properities* CP
 ; //materialApp def
 material_app_properities: home C?; // materialApp props
 
-scaffold_call: SCAFFOLD_ OP scaffold_call_properities* CP
+scaffold_call: SCAFFOLD_ OP (scaffold_call_properities | floatingactionbutton)* CP
 ;
-scaffold_call_properities: body; // scaffold props
+scaffold_call_properities: body C?; // scaffold props
 
 row: ROW_ OP row_properities CP C?
 ;
@@ -207,8 +207,13 @@ inputDecoration: INDEC OP inputDecorationProperties+ CP C?
 inputDecorationProperties: (border | hint);
 
 
+
+floatingactionbutton: FAB CO FAB_  OP floatProperties+ CP C?
+;
 button: TXTBTN OP buttonProperties+ CP C?
 ;
 
 buttonProperties: (on_tap | child) // Note: onTap = onPressed
+;
+floatProperties: (on_tap | child) // Note: onTap = onPressed
 ;

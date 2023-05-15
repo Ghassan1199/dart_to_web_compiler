@@ -1,32 +1,45 @@
-import 'package:flutter/material.dart';
-import 'pageTwo.dart';
-import 'page_three.dart';
+class MyHomePage extends StatefulWidget {
+  @override
+  State createState() => _MyHomePageState();
+}
 
-class first_page extends StatelessWidget {
-  string password = "init";
-  string email = "init";
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+  string text = "You have pushed the button this many times";
+
+  void _incrementCounter() {
+    setState() {
+      _counter++
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          Container(
-            color: Colors.blueGrey,
-            width: 40,
-            child: TextButton(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => second_page(
-                               email,
-                              password
-                            )));
-              },
-              child: Text(Done)
+      body:ListView(
+          padding: EdgeInsets.symmetric( 250),
+          children:[
+            Container(
+              height: 200,
             ),
-          ),
+            Text(
+            text
+            ),
+            Container(
+              margin: EdgeInsets.all(100),
+              child: Text(
+                $_counter
+              ),
+            ),
+          ]
+        ),
 
-      ),
-    );
+      floatingActionButton: FloatingActionButton(
+        onTap:(){ _incrementCounter},
+         child:Icon(add)
+      ));,
+
+
+
   }
 }

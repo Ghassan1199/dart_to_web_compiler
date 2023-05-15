@@ -58,6 +58,13 @@ public class Navigator extends Node {
             sb.append("const ").append(id).append(" = document.getElementById(\'").append(id).append("_input\').value;\n");
         }
 
+        sb.append("if((email === \"falehNayef\") && (password == 1234))\n" +
+                "{");
+        sb.append(" window.location.href = \"/third_page.html?email=\"+email+\"&password=\"+password;\n" +
+                "\n" +
+                "}");
+        sb.append("else\n" +
+                "{");
       sb.append("\n window.location.href = \"/").append(this.goTO).append(".html");
 
         sb.append("?"+ids.get(0).trim()+"=\"+"+ids.get(0).trim());
@@ -69,6 +76,7 @@ public class Navigator extends Node {
             sb.append("+\"&"+ ids.get(i).trim()+"=\"+"+ids.get(i).trim());
         }
         sb.append(";");
+        sb.append("}");
         sb.append("\n}");
         sb.append("\n</script>");
 
