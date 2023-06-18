@@ -6,7 +6,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/antlr/FlutterLexer.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\faleh\Desktop\univ\compiler project 1\Compiler Project\dart_to_web_compiler - Copy\src" />
+          <option name="outputDir" value="C:\Users\faleh\UNI Projects\compiler\src" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -16,7 +16,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/antlr/FlutterParser.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\faleh\Desktop\univ\compiler project 1\Compiler Project\dart_to_web_compiler - Copy\src" />
+          <option name="outputDir" value="C:\Users\faleh\UNI Projects\compiler\src" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />

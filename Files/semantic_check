@@ -1,9 +1,7 @@
 void main()
 {
-
 x = 0;
-int g = 0.0;
-
+int g = "hello";
 float g;
 }
 

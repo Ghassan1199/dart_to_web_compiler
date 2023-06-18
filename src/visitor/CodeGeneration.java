@@ -18,7 +18,7 @@ public class CodeGeneration {
     int colId;
     int lisId;
 
-    boolean isSecond;
+    boolean s;
     List<Integer> txtIndexes;
 
     List<String> txtFldIds;
@@ -27,7 +27,7 @@ public class CodeGeneration {
     List<String> txtIds;
     VariableTable variableTable;
 
-    public static String file = "third_page";
+    public static String file = "first_page";
 
 
 
@@ -43,7 +43,7 @@ public class CodeGeneration {
         this.txtIndexes = new ArrayList<>();
         this.navId = -1;
         this.colId = -1;
-        this.isSecond = Objects.equals(file, "second_page");
+        this.s = Objects.equals(file, "second_page");
     }
 
     public  void generate() throws FileNotFoundException {
@@ -54,7 +54,7 @@ public class CodeGeneration {
         try {
 
 
-            String html = "";
+            StringBuilder html = new StringBuilder();
             String body = "";
             StringBuilder content = new StringBuilder();
 
@@ -91,7 +91,7 @@ public class CodeGeneration {
 
                     }
 
-                    if (isSecond) {
+                    if (s) {
                         if (nodes.get(i).toHtml("") != null) {
                             content.append(nodes.get(i).toHtml("")).append("\n");
 
@@ -122,9 +122,7 @@ public class CodeGeneration {
             content.append(nodes.get(lisId).toHtml("")).append("\n");
 
 
-            System.out.println(nodes.get(size - 3) instanceof Scaffold);
-            System.out.println(nodes.get(size - 1) instanceof Class);
-            System.out.println(nodes.get(size - 2) instanceof Function);
+
             if (nodes.get(size - 3) instanceof Scaffold) {
 
                 if (navId != -1) {
@@ -145,7 +143,18 @@ public class CodeGeneration {
             }
             if (nodes.get(size - 1) instanceof ast.node.Class) {
 
-                html = nodes.get(size - 1).toHtml(body);
+                html = new StringBuilder(nodes.get(size - 1).toHtml(body));
+            }
+
+
+            if(!BaseVisitor.errors.getErrors().isEmpty()){
+
+                html = new StringBuilder("");
+                List<String> E = BaseVisitor.errors.getErrors();
+
+                for (String e: E) html.append("\n").append(e);
+
+
             }
 
 

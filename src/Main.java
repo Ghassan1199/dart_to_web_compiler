@@ -1,5 +1,6 @@
 import antlr.FlutterLexer;
 import antlr.FlutterParser;
+import ast.node.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import ast.program.Program;
@@ -7,6 +8,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import visitor.BaseVisitor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
@@ -24,7 +27,21 @@ public class Main {
 
         if(!BaseVisitor.errors.getErrors().isEmpty()){
             BaseVisitor.errors.print();
+
+            PrintWriter   writer = new PrintWriter("C:/Users/faleh/Desktop/New folder (4)/" + visitor.CodeGeneration.file + ".html");
+            try {
+
+                writer.println(BaseVisitor.errors.er());
+
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                writer.close();
+                writer.flush();
+
+            }
         }
+
         else {
             System.out.println("-------Symbol Table-------");
             System.out.println();

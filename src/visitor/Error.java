@@ -30,4 +30,18 @@ public class Error {
 
 
     }
+
+
+    public StringBuilder er() {
+
+        StringBuilder sb = new StringBuilder();
+        for (String error : errors) {
+
+            sb.append("\n").append(error);
+
+        }
+
+        return sb;
+
+    }
 }

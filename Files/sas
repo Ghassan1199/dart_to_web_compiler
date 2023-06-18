@@ -1,5 +1,0 @@
-class AS{ void _incrementCounter() {
-    setState() {
-      _counter++
-    };
-  }}

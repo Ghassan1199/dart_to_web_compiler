@@ -32,17 +32,14 @@ public class SemanticCheck {
             String string1 = variableTable.getData().get(i).split(",")[0];
 
 
-            if ((!Objects.equals(string1, "int")) && (!Objects.equals(string1, "float")) && (!Objects.equals(string1, "string")) && (!Objects.equals(string1, "double"))) {
+            if ((!Objects.equals(string1, "int")) && (!Objects.equals(string1, "float"))
+                    && (!Objects.equals(string1, "string")) && (!Objects.equals(string1, "double"))) {
 
                 if (lookFor(string1)) {
                     errors.setError("variable " + string1 + " is not declared ");
-
                 }
-
-            }
-        }
+            }}
     }
-
     private boolean lookFor(String var)
     {
         for (int i = 0; i < variableTable.getData().size(); i++) {

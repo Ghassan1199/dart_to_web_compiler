@@ -40,7 +40,7 @@ public class FloatingActionButton extends Node{
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("<div style=\"position: fixed; bottom: 20px; right: 20px; z-index: 9999; background-color: #ff0000; color: #ffffff; border-radius: 50%; width: 60px; height: 60px; text-align: center; line-height: 60px; font-size: 20px; cursor: pointer;\">\n");
+        sb.append("<div style=\"position: fixed; bottom: 20px; right: 20px; z-index: 9999; background-color: #00ffff; color: #ffffff; border-radius: 50%; width: 60px; height: 60px; text-align: center; line-height: 60px; font-size: 20px; cursor: pointer;\">\n");
 
         sb.append(text);
 

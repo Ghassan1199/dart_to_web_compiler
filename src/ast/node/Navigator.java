@@ -58,7 +58,7 @@ public class Navigator extends Node {
             sb.append("const ").append(id).append(" = document.getElementById(\'").append(id).append("_input\').value;\n");
         }
 
-        sb.append("if((email === \"falehNayef\") && (password == 1234))\n" +
+        sb.append("if((email === \"root\") && (password == 1234))\n" +
                 "{");
         sb.append(" window.location.href = \"/third_page.html?email=\"+email+\"&password=\"+password;\n" +
                 "\n" +
@@ -71,8 +71,6 @@ public class Navigator extends Node {
 
         String str;
         for (int i = 1; i < ids.size() ; i++) {
-
-
             sb.append("+\"&"+ ids.get(i).trim()+"=\"+"+ids.get(i).trim());
         }
         sb.append(";");
